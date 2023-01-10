@@ -6,7 +6,10 @@ export const useInterval = (callback, delay) => {
 
   const run = useCallback(() => {
     if (delay !== null) {
-      interval.current = setInterval(() => savedCallback.current(), delay || 0);
+      savedCallback.current();
+      interval.current = setInterval(() => {
+        savedCallback.current();
+      }, delay || 0);
     }
   }, [delay]);
   const clear = useCallback(() => clearInterval(interval.current), []);
@@ -14,15 +17,6 @@ export const useInterval = (callback, delay) => {
   useEffect(() => {
     savedCallback.current = callback;
   });
-
-  // useEffect(() => {
-  //   if (delay !== null) {
-  //     interval.current = setInterval(() => savedCallback.current(), delay || 0);
-  //     return clear;
-  //   }
-
-  //   return undefined;
-  // }, [delay, clear]);
 
   return [run, clear];
 };

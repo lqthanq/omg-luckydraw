@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useAppContext } from "../context";
-import { useInterval } from "../hooks/useInterval";
-import { getRandom } from "../utils";
+import { Wrapper } from "./Wrapper";
 
 export function Config() {
   // Context
@@ -15,31 +14,6 @@ export function Config() {
     [setState]
   );
 
-  const [res, setRes] = useState(null);
-  const [isRun, setIsRun] = useState(false);
-
-  // Hooks
-
-  const handleCalcu = useCallback(() => {
-    const t = Number(to);
-    const f = Number(from);
-    const ex = excludes.split(/[\t\n,]/).map((x) => x.trim() && Number(x));
-    const res = getRandom(t, f, ex);
-    setRes(`${res}`.padStart(from.length, "0"));
-  }, [to, from, excludes]);
-
-  const [start, clear] = useInterval(handleCalcu, 350);
-
-  const handleRun = useCallback(() => {
-    setIsRun(true);
-    start();
-  }, [start]);
-
-  const handlePause = useCallback(() => {
-    setIsRun(false);
-    clear();
-  }, [clear]);
-
   const handleContinue = useCallback(
     (e) => {
       e.preventDefault();
@@ -48,56 +22,100 @@ export function Config() {
     [setState]
   );
 
-  useEffect(() => {
-    const res = to.padStart(from.length, "0");
-    setRes(res);
-  }, [to, from]);
-
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex flex-col gap-6">
-        <input
-          type="text"
-          name="eventName"
-          onChange={handleInputChange}
-          placeholder="Enter event name"
-          value={eventName}
-        />
-        <input
-          type="number"
-          name="to"
-          onChange={handleInputChange}
-          placeholder="Enter range start"
-          value={to}
-          min={0}
-        />
-        <input
-          type="number"
-          name="from"
-          onChange={handleInputChange}
-          placeholder="Enter range end"
-          value={from}
-          max={10_000}
-        />
-        <textarea
-          rows={3}
-          name="excludes"
-          onChange={handleInputChange}
-          placeholder="Enter exclude"
-          value={excludes}
-        />
-        <div className="mb-6">
-          <span className="font-bold font-5xl">{res}</span>
+    <Wrapper>
+      <h2 className="text-2xl font-bold line-height text-gray-900 sm:truncate sm:text-4xl sm:tracking-tight text-center mb-4">
+        Configures for Lucky draw
+      </h2>
+      <div className="overflow-hidden shadow sm:rounded-md">
+        <div className="bg-white px-4 py-5 sm:p-6">
+          <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6 sm:col-span-6">
+              <label
+                htmlFor="eventName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Event Name
+              </label>
+              <input
+                type="text"
+                name="eventName"
+                id="eventName"
+                onChange={handleInputChange}
+                placeholder="Enter event name"
+                value={eventName}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+
+            <div className="col-span-6 sm:col-span-3">
+              <label
+                htmlFor="from"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Min
+              </label>
+              <input
+                type="number"
+                name="from"
+                id="from"
+                onChange={handleInputChange}
+                placeholder="Enter range start"
+                value={from}
+                max={0}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+
+            <div className="col-span-6 sm:col-span-3">
+              <label
+                htmlFor="to"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Max
+              </label>
+              <input
+                type="number"
+                name="to"
+                id="to"
+                onChange={handleInputChange}
+                placeholder="Enter range end"
+                value={to}
+                min={10_000}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+
+            <div className="col-span-6 sm:col-span-6">
+              <label
+                htmlFor="excludes"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Excludes
+              </label>
+              <div className="mt-1">
+                <textarea
+                  rows={3}
+                  name="excludes"
+                  id="excludes"
+                  onChange={handleInputChange}
+                  placeholder="Enter value should exclude"
+                  value={excludes}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex gap-8 ">
-          <button type="button" children="Continue" onClick={handleContinue} />
+        <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
           <button
             type="button"
-            children={isRun ? "Pause" : "Run"}
-            onClick={isRun ? handlePause : handleRun}
+            className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            children="Continue"
+            onClick={handleContinue}
           />
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 }
