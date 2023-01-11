@@ -425,6 +425,10 @@ textarea {
   padding-bottom: 1.25rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .sm\:p-6 {
   padding: 1.5rem;
 }

@@ -28,7 +28,7 @@ function App() {
     const state = {};
     if (delay != null) {
       delay = parseInt(delay, 10);
-      delay = delay < 100 ? 350 : delay;
+      delay = delay < 100 ? 200 : delay;
       state.delay = delay;
     }
 

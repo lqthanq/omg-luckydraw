@@ -89,7 +89,7 @@ export function Content() {
         </h2>
         <div className="overflow-hidden shadow sm:rounded-md">
           <div className="bg-white px-4 py-5 sm:p-6">
-            <div className="grid grid-cols-6 gap-x-6 gap-y-10">
+            <div className="grid grid-cols-6 gap-x-6 gap-y-10 pt-4">
               {len > 0 ? (
                 <div
                   className={`col-span-6 sm:col-span-6 mx-auto grid grid-cols-${len} gap-x-6 gap-y-10 w-full`}
@@ -164,5 +164,5 @@ function joinEx(excludes, val) {
   if (newEx.includes(parseInt(val, 10))) {
     return excludes;
   }
-  return [excludes, val].filter(Boolean).join(",");
+  return [excludes, val].filter(Boolean).join(", ");
 }
