@@ -10,9 +10,9 @@ function App() {
     from: "1",
     to: "100",
     excludes: "",
-    eventName: "Year End Party",
+    eventName: "Year end party",
     background: null,
-    delay: 350,
+    delay: 200,
   });
 
   // Markup

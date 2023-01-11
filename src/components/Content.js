@@ -84,7 +84,7 @@ export function Content() {
   return (
     <React.Fragment>
       <Wrapper>
-        <h2 className="text-2xl font-bold line-height text-gray-900 sm:truncate sm:text-4xl sm:tracking-tight text-center mb-4">
+        <h2 className="text-2xl font-bold line-height text-white sm:text-4xl sm:tracking-tight text-center mb-4">
           {eventName}
         </h2>
         <div className="overflow-hidden shadow sm:rounded-md">

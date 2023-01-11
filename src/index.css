@@ -383,6 +383,8 @@ textarea {
 
 .sm\:text-4xl {
   font-size: 2.25rem;
+  font-size: 3.25rem;
+  letter-spacing: 0.3rem;
 }
 
 .sm\:tracking-tighter {
