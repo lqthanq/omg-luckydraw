@@ -9,8 +9,7 @@ export const options = [
   { id: "giai-nhat", name: "Giải Nhất" },
   { id: "giai-nhi", name: "Giải Nhì" },
   { id: "giai-ba", name: "Giải Ba" },
-  { id: "giai-tu", name: "Giải Tư" },
-  { id: "giai-nam", name: "Giải Năm" },
+  { id: "giai-khuyen-khich", name: "Giải Khuyến Khich" },
 ];
 
 function App() {
