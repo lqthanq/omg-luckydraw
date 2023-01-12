@@ -119,7 +119,10 @@ export function Content() {
           {eventName}
         </h2>
         <div className="overflow-hidden shadow sm:rounded-md">
-          <div className="bg-white px-4 py-5 sm:p-6">
+          <div
+            className="bg-white px-4 py-5 sm:p-6"
+            style={{ paddingBottom: "10rem" }}
+          >
             <div className="grid grid-cols-6 gap-x-6 gap-y-6 pt-4">
               {len > 0 ? (
                 <div

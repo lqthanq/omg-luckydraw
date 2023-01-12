@@ -52,7 +52,9 @@ export function Config() {
         Configures for Lucky draw
       </h2>
       <div className="overflow-hidden shadow sm:rounded-md">
-        <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="bg-white px-4 py-5 sm:p-6" 
+        style={{ paddingBottom: '4rem'}}
+        >
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-6">
               <label
