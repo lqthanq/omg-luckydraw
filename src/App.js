@@ -4,6 +4,15 @@ import { Content } from "./components/Content";
 import { AppContextProvider } from "./context";
 import { getURLParameters } from "./utils";
 
+export const options = [
+  { id: "giai-dac-biet", name: "Giải Đặc Biệt" },
+  { id: "giai-nhat", name: "Giải Nhất" },
+  { id: "giai-nhi", name: "Giải Nhì" },
+  { id: "giai-ba", name: "Giải Ba" },
+  { id: "giai-tu", name: "Giải Tư" },
+  { id: "giai-name", name: "Giải Năm" },
+];
+
 function App() {
   const [state, setState] = useReducer((p, state) => ({ ...p, ...state }), {
     step: 1,
@@ -13,6 +22,7 @@ function App() {
     eventName: "Year end party",
     background: null,
     delay: 200,
+    selectedOption: [options[0], options[1], options[2], options[3]],
   });
 
   // Markup

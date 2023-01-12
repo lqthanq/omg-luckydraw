@@ -4,9 +4,9 @@ import bg from "../assets/images/bg.png";
 
 export function Wrapper({ children }) {
   const style = {
-    maxWidth: 180,
+    maxWidth: 90,
     objectFit: "cover",
-    marginTop: "1rem",
+    marginTop: "0.5rem",
     marginLeft: "0.5rem",
     display: "inline-block",
   };
@@ -18,7 +18,7 @@ export function Wrapper({ children }) {
   return (
     <div className="bg-gray-100 h-screen" style={bgStyle}>
       <img src={logo} alt="logo" style={style} />
-      <div className="w-8/12 mx-auto mt-10">{children}</div>
+      <div className="w-8/12 mx-auto">{children}</div>
     </div>
   );
 }
