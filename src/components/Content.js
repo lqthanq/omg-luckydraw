@@ -25,6 +25,7 @@ export function Content() {
     setState: setStateProp,
     delay,
     selectedOption,
+    automation,
   } = useAppContext();
 
   // State
@@ -37,6 +38,20 @@ export function Content() {
   });
 
   const currentRes = useRef(null);
+  const btnRef = useRef();
+
+  useEffect(() => {
+    if (automation) {
+      if (state.isRun) {
+        let id = setTimeout(() => {
+          btnRef.current?.click?.();
+        }, 1000);
+        return () => {
+          clearTimeout(id);
+        };
+      }
+    }
+  }, [automation, state.isRun]);
 
   useEffect(() => {
     const ex = genEx(state.excludes);
@@ -229,6 +244,7 @@ export function Content() {
                   className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-11/12 ml-2"
                   children={state.isRun ? "Pause" : "Run"}
                   onClick={state.isRun ? handlePause : handleRun}
+                  ref={btnRef}
                 />
               </div>
               {Array.from((state.result || {}).entries()).map(

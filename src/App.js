@@ -21,6 +21,7 @@ function App() {
     eventName: "Year end party",
     background: null,
     delay: 200,
+    automation: false,
     selectedOption: [options[0], options[1], options[2], options[3]],
   });
 
@@ -32,7 +33,7 @@ function App() {
 
   useEffect(() => {
     const { href } = window.location;
-    let { delay, step, to, from, event_name, excludes } =
+    let { delay, step, to, from, event_name, excludes, automation } =
       getURLParameters(href);
     const state = {};
     if (delay != null) {
@@ -63,6 +64,10 @@ function App() {
     }
     if (typeof excludes === "string" && excludes) {
       state.excludes = excludes;
+    }
+
+    if (automation != null) {
+      state.automation = JSON.parse(automation);
     }
 
     setState(state);
